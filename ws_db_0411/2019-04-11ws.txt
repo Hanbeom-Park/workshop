@@ -1,0 +1,27 @@
+CREATE TABLE `ssafyhrm`.`book` (
+  `isbn` CHAR(8) NOT NULL,
+  `title` VARCHAR(50) NOT NULL,
+  `author` VARCHAR(10) NOT NULL,
+  `publisher` VARCHAR(15) NOT NULL,
+  `price` INT NOT NULL,
+  `description` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`isbn`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+insert into book(isbn,title,author,publisher,price,description)
+values('123-1-14','Java¿Í coffee','diana','ÀÚ¹Ù´åÄÄ',8000,'»îÀÇ Áñ°Å¿ò');
+insert into book(isbn,title,author,publisher,price,description)
+values('555-23-2','AI¿Í ¹Ì·¡','±èÇöÁÖ','¹Ì·¡´åÄÄ',20000,'');
+insert into book(isbn,title,author,publisher,price,description)
+values('123-2-15','Java¿Í ³î±â','±èÅÂÈñ','ÀÚ¹Ù´åÄÄ',22000,'Java Á¤º¹');
+insert into book(isbn,title,author,publisher,price,description)
+values('123-6-24','Java¿Í ¾Ë°í¸®Áò','¼­¹Î±Ô','ÀÚ¹Ù´åÄÄ',20000,'¼º´É ¾÷!!');
+insert into book(isbn,title,author,publisher,price,description)
+values('423-5-36','IoT¼¼»ó','ÀÌ¼¼ÁØ','¹Ì·¡´åÄÄ',25000,'');
+
+select * from book;
+update book set price=price*0.9;
+update book set price=price*1.2 where title like '%AI%';
+delete from book where title like '%Java%' and price<10000;
+select publisher,count(*),sum(price),avg(price) from book group by publisher;
