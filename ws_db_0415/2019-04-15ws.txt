@@ -1,0 +1,30 @@
+CREATE TABLE DEPT	(
+	DEPTNO int(2)  PRIMARY KEY,	
+	DNAME VARCHAR(14) ,	
+	LOC VARCHAR(13) ) ;    
+
+INSERT INTO DEPT VALUES(10,'ACCOUNTING','NEW YORK');
+INSERT INTO DEPT VALUES(20,'RESEARCH','DALLAS');
+INSERT INTO DEPT VALUES(30,'SALES','CHICAGO');
+INSERT INTO DEPT VALUES(40,'OPERATIONS','BOSTON');
+
+ALTER TABLE EMP
+ADD	CONSTRAINT  emp_deptno_fk foreign key(deptno) 
+	references dept(deptno);
+
+
+select salary,concat(first_name,' ',last_name) as name from employees e join departments d on e.department_id=d.department_id;
+select concat(first_name,' ',last_name) as name,department_name from employees e join departments d on e.department_id=d.department_id where e.last_name like "%KING%";
+select concat(e.first_name,' ',e.last_name) as name,e.department_id,d.department_name,e.salary from employees e,departments d where e.department_id=d.department_id;
+select concat(e1.ename,'ÀÇ ¸Å´ÏÀú´Â ',e2.ename,'ÀÌ´Ù.') as aa from emp e1 join emp e2 where e1.mgr=e2.empno;
+select e.ename,d.dname,e.sal,e.job from emp e join dept d on e.deptno=d.deptno where e.job=(select job from emp where ename like '%SCOTT%');
+select empno,ename,HIREDATE,sal,deptno from emp where deptno=(select deptno from emp where ename like '%SCOTT%');
+select e.empno,e.ename,d.dname,e.hiredate,d.loc,e.sal from emp e join dept d on e.deptno=d.deptno where e.sal>(select avg(sal) from emp);
+select e.empno,e.ename,d.dname,d.loc,e.sal,e.job from emp e join dept d on e.deptno=d.deptno where e.job in(select job from emp where deptno=30 group by job) order by sal desc;
+select e.empno,e.ename,d.dname,d.loc,e.sal,e.job from emp e join dept d on e.deptno=d.deptno where e.deptno=10 and e.job not in(select job from emp where deptno=30 group by job);
+select empno,ename,sal from emp where sal in (select sal from emp where ename like '%KING%' or ename like '%JAMES%');
+select empno,ename,sal from emp where sal>(select max(sal) from emp where deptno=30);
+create  index  eidx  on emp (ename);
+select ename,sal from emp where substr(hiredate,1,4) in (select substr(hiredate,1,4) from emp where ename like '%ALLEN') ;
+create or replace view eview as select deptno, sum(sal) ssal from emp group by deptno order by ssal;
+select * from eview order by ssal desc limit 3;
