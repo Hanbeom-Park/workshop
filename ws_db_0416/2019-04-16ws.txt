@@ -1,0 +1,80 @@
+select * from bookbook;
+select * from bookcustomer;
+
+insert into bookcustomer(cname,cpwd,cphone)
+values('ÁÖÈ¿Àç','1111','010-1233-123');
+insert into bookcustomer(cname,cpwd,cphone)
+values('¹ÚÇÑ¹ü','2222','010-1233-124');
+
+select * from bookitem;
+desc bookitem;
+
+select * from booklend;
+desc booklend;
+
+select now(),sysdate(),date_add(sysdate(),interval 7 day) from dual;
+INSERT INTO booklend(LENDSDATE,LENDEDATE,CNUM)
+VALUES(sysdate(),date_add(sysdate(),interval 7 day) ,3);
+
+
+
+SELECT MAX(LENDNUM) FROM booklend;
+insert into bookcustomer(cname,cpwd,cphone)
+values('¹Ú»óÈ£',3333,'010-345-1234');
+
+
+INSERT INTO bookitem(isbn,LENDNUM,lendrdate)
+values("9788992939003",1,SYSDATE());
+INSERT INTO bookitem(isbn,LENDNUM,lendrdate)
+values("9788992939004",1,SYSDATE());
+INSERT INTO bookitem(isbn,LENDNUM,lendrdate)
+values("9788992939005",2,SYSDATE());
+
+select * from bookitem
+where lendnum=1;
+select b.title from bookitem i join book b where i.isbn=b.isbn;
+select * from bookbook
+where isbn in (select isbn from bookitem
+where lendnum=1);
+select * from bookbook;
+select * from bookcustomer;
+select * from bookitem;
+select * from bookbook;
+select * from bookcustomer;
+select * from bookitem;
+desc bookitem;
+
+select * from booklend;
+desc booklend;
+
+SELECT NOW(), date_add(SYSDATE(),interval  7 day)  FROM DUAL;
+INSERT INTO booklend(LENDSDATE, LENDEDATE, CNUM)
+VALUES(SYSDATE(), date_add(SYSDATE(),interval  7 day), 1 );
+
+SELECT MAX(LENDNUM) FROM booklend;
+
+
+
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939003','MySQL','ÀÌ¼º¿í','À§Å°ºÏ½º','2015-03-04',40000);
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939004','MSSQL','ÀÌ¼º±¹','ÇÑºû','2015-05-04',30000);
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939005','ÀÚ¹Ù200','Á¶È¿Àº','Á¤º¸','2018-05-04',28000);
+
+
+INSERT INTO bookitem(isbn,LENDNUM,lendrdate)
+values("9788992939003",1,SYSDATE());
+INSERT INTO bookitem(isbn,LENDNUM,lendrdate)
+values("9788992939004",1,SYSDATE());
+INSERT INTO bookitem(isbn,LENDNUM,lendrdate)
+values("9788992939005",1,SYSDATE());
+
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939009','ÀÚ¹Ù400','Á¶È¿Àº','Á¤º¸','2018-05-04',28000);
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939010','ÀÚ¹Ù500','Á¶È¿Àº','Á¤º¸','2018-05-04',28000);
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939011','ÀÚ¹Ù600','Á¶È¿Àº','Á¤º¸','2018-05-04',28000);
+INSERT INTO BOOKBOOK (ISBN,TITLE,AUTHOR,PUBLISHER,PUBDATE,PRICE)
+VALUES('9788992939012','ÀÚ¹Ù700','Á¶È¿Àº','Á¤º¸','2018-05-04',28000);
